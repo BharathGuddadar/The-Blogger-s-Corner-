@@ -25,7 +25,7 @@ export default async function PostPage({ params }) {
           {post.content}
         </div>
         <div className="text-center mt-8">
-        <a href="/" className="text-blue-600 hover:underline">← Back to Home</a>
+        <a href="/" className="text-orange-600 hover:underline">← Back to Home</a>
         </div>
 
       </article>

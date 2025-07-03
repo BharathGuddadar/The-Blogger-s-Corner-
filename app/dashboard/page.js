@@ -77,7 +77,7 @@ export default function Dashboard() {
 
   return (
     <div className="max-w-3xl mx-auto p-6">
-      <h1 className="text-3xl font-bold mb-6 text-center">📝 Dashboard</h1>
+      <h1 className="text-3xl text-orange-500 font-bold mb-6 text-center"> Dashboard</h1>
 
       {/* Add Post Form */}
       <form onSubmit={handleSubmit} className="bg-white shadow-md rounded p-6 mb-8 space-y-4">
@@ -99,9 +99,9 @@ export default function Dashboard() {
         />
         <button
           type="submit"
-          className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded"
+          className="bg-orange-500 hover:bg-orange-700 text-white px-6 py-2 rounded"
         >
-          ➕ Add Post
+         Post
         </button>
       </form>
 
@@ -120,28 +120,28 @@ export default function Dashboard() {
                   value={editTitle}
                   onChange={(e) => setEditTitle(e.target.value)}
                   required
-                  className="w-full px-4 py-2 border rounded"
+                  className="text-black font-blod w-full px-4 py-2 border rounded"
                 />
                 <textarea
                   value={editContent}
                   onChange={(e) => setEditContent(e.target.value)}
                   required
                   rows={4}
-                  className="w-full px-4 py-2 border rounded"
+                  className="text-black w-full px-4 py-2 border rounded"
                 />
                 <div className="flex gap-3">
                   <button
                     type="submit"
-                    className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded"
+                    className="bg-white border text-1xl hover:bg-green-100 text-black px-4 py-2 rounded"
                   >
-                    💾 Save
+                    Save
                   </button>
                   <button
                     type="button"
                     onClick={() => setEditId(null)}
-                    className="bg-gray-300 hover:bg-gray-400 px-4 py-2 rounded"
+                    className="bg-white border text-1xl hover:bg-red-100 text-black px-4 py-2 rounded"
                   >
-                    ❌ Cancel
+                     Cancel
                   </button>
                 </div>
               </form>
@@ -156,15 +156,15 @@ export default function Dashboard() {
                       setEditTitle(post.title);
                       setEditContent(post.content);
                     }}
-                    className="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded"
+                    className="bg-white border text-1xl hover:bg-orange-100 text-orange-500 px-4 py-2 rounded"
                   >
-                    ✏️ Edit
+                    Edit
                   </button>
                   <button
                     onClick={() => handleDelete(post._id)}
-                    className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded"
+                    className="bg-white border text-1xl hover:bg-orange-100 text-orange-500 px-4 py-2 rounded"
                   >
-                    🗑️ Delete
+                    Delete
                   </button>
                 </div>
               </>
