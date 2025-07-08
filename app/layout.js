@@ -4,7 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 
 export const metadata = {
-  title: "Bloger's Corner",
+  title: "Blogger's Corner",
   description: "A simple blog built with Next.js",
 };
 
