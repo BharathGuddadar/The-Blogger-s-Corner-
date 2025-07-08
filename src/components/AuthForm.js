@@ -67,7 +67,7 @@ export default function AuthForm({ isLogin }) {
         fontFamily: "sans-serif",
       }}
     >
-      <h2 style={{ textAlign: "center",color:"black", marginBottom: 25 }}>
+      <h2 style={{ textAlign: "center",color:"rgb(241, 115, 47)",fontSize:"25px", fontWeight:"bold" ,marginBottom: 25 }}>
         {isLogin ? "Welcome Back" : "Join as a Blogger"}
       </h2>
       <form onSubmit={handleSubmit}>
@@ -116,7 +116,7 @@ export default function AuthForm({ isLogin }) {
           style={{
             width: "100%",
             padding: "10px",
-            backgroundColor: "#1e88e5",
+            backgroundColor: "#f97316",
             color: "#fff",
             border: "none",
             borderRadius: 6,
@@ -124,8 +124,8 @@ export default function AuthForm({ isLogin }) {
             fontSize: 16,
             transition: "background 0.3s",
           }}
-          onMouseOver={(e) => (e.currentTarget.style.backgroundColor = "#1565c0")}
-          onMouseOut={(e) => (e.currentTarget.style.backgroundColor = "#1e88e5")}
+          onMouseOver={(e) => (e.currentTarget.style.backgroundColor = "	#ea580c")}
+          onMouseOut={(e) => (e.currentTarget.style.backgroundColor = "#f97316")}
         >
           {loading ? "Please wait..." : isLogin ? "Login" : "Register"}
         </button>

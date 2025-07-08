@@ -5,6 +5,23 @@ import Link from "next/link";
 
 export default function HomePage() {
   const [posts, setPosts] = useState([]);
+  const [likes, setLikes] = useState({});
+
+  const messages = [
+    "Discover articles, insights, and tutorials shared by passionate writers.",
+    "Stay updated with the latest tech trends and writing tips.",
+    "Join a growing community of developers, designers, and storytellers.",
+  ];
+  const [index, setIndex] = useState(0);
+
+  const siteURL = "https://the-bloggers-corner.vercel.app";
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prev) => (prev + 1) % messages.length);
+    }, 2000);
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -15,15 +32,22 @@ export default function HomePage() {
     fetchPosts();
   }, []);
 
+  const handleLike = (postId) => {
+    setLikes((prev) => ({
+      ...prev,
+      [postId]: (prev[postId] || 0) + 1,
+    }));
+  };
+
   return (
-    <main className="min-h-screen bg-[#1a1a1a] text-gray-100 px-4 sm:px-6 py-10">
+    <main className="min-h-screen bg-[#1a1a1a] mb-5 text-gray-100 px-4 sm:px-6 py-10">
       {/* Header */}
       <div className="text-center mb-10">
         <h1 className="text-3xl sm:text-4xl font-bold text-orange-500 tracking-tight">
-          📝 Blogger’s Corner
+          Blogger’s Corner
         </h1>
-        <p className="text-[#bdc3c7] mt-2 text-base sm:text-lg max-w-xl mx-auto">
-          Discover articles, insights, and tutorials shared by passionate writers.
+        <p className="text-[#bdc3c7] mt-2 text-base sm:text-lg max-w-xl mx-auto transition-opacity duration-500 ease-in-out">
+          {messages[index]}
         </p>
       </div>
 
@@ -41,7 +65,9 @@ export default function HomePage() {
                   key={post._id}
                   className="bg-white min-h-60 rounded-xl shadow hover:shadow-lg transform hover:-translate-y-1 transition duration-300 p-5 border border-[#ddd]"
                 >
-                  <h2 className="text-2xl text-orange-600 font-semibold mb-2">{post.title}</h2>
+                  <h2 className="text-2xl text-orange-600 font-semibold mb-2">
+                    {post.title}
+                  </h2>
                   <p className="text-[#4a3f35] mb-3 text-base leading-relaxed">
                     {post.content.slice(0, 300)}...
                   </p>
@@ -51,6 +77,50 @@ export default function HomePage() {
                   </div>
                   <div className="mt-3 text-[#2c3e50] font-semibold hover:underline transition">
                     Read More →
+                  </div>
+
+                  {/* Like & Share */}
+                  <div className="mt-4 flex items-center justify-between text-sm">
+                    <button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleLike(post._id);
+                      }}
+                      className="flex items-center gap-1 text-red-600 hover:text-red-700 transition"
+                    >
+                      ❤️ {likes[post._id] || 0}
+                    </button>
+
+                    <button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        const shareURL = `https://the-bloggers-corner.vercel.app/posts/${post._id}`;
+
+                          if (navigator.share) {
+                            navigator
+                              .share({
+                                title: post.title,
+                                text: post.content.slice(0, 100),
+                                url: shareURL,
+                              })
+                              .catch((err) => {
+                                console.error("Share failed:", err);
+                                alert("Share failed or was canceled.");
+                              });
+                          } else {
+                            try {
+                              navigator.clipboard.writeText(shareURL);
+                              alert("Link copied to clipboard!");
+                            } catch (err) {
+                              alert("Failed to copy link. Try manually.");
+                            }
+                          }
+
+                      }}
+                      className="flex items-center gap-1 text-black hover:text-blue-700 transition"
+                    >
+                      🔗 Share
+                    </button>
                   </div>
                 </Link>
               ))}

@@ -1,4 +1,33 @@
 @import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  @keyframes fadeSlide {
+    0% {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    25% {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+    75% {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+  }
+
+  .animate-fadeSlide {
+    animation: fadeSlide 3s ease-in-out;
+  }
+}
+
 
 :root {
   --background: #ffffff;

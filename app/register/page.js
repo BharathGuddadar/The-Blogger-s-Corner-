@@ -6,9 +6,9 @@ export default function RegisterPage() {
   return (
     <div style={{ textAlign: "center" }}>
       <AuthForm isLogin={false} />
-      <p style={{ marginTop: 20 }}>
+      <p style={{ margin: 20 }}>
         Already have an account?{" "}
-        <Link href="/login" style={{ color: "#1e88e5", textDecoration: "underline" }}>
+        <Link href="/login" style={{ color: "#f97316", textDecoration: "underline" }}>
           Login here
         </Link>
       </p>
